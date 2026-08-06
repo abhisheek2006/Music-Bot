@@ -1,0 +1,5 @@
+# Development dependencies
+# Install with: pip install -r requirements-dev.txt
+
+ruff>=0.1.0
+mypy>=1.8.0

@@ -1,0 +1,21 @@
+[Unit]
+Description=Telebot Telegram Bot
+After=network-online.target mongodb.service redis-server.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=telebot
+Group=telebot
+WorkingDirectory=/opt/telebot
+Environment=PYTHONUNBUFFERED=1
+EnvironmentFile=/opt/telebot/.env
+ExecStart=/opt/telebot/venv/bin/python /opt/telebot/bot.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

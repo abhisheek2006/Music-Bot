@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  telebot:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+      - redis
+    volumes:
+      - ./logs:/app/logs
+      - ./backups:/app/backups
+    ports:
+      - "8080:8080"
+    networks:
+      - telebot-network
+
+  mongodb:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - telebot-network
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - telebot-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  telebot-network:
+    driver: bridge

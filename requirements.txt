@@ -1,0 +1,26 @@
+# Telegram Bot Dependencies
+# Python 3.14+ required
+
+# Telegram client (Pyrogram-compatible fork with Python 3.14 support)
+# Install from GitHub dev branch for colored button support (ButtonStyle):
+# pip install "git+https://github.com/KurimuzonAkuma/kurigram.git"
+kurigram>=2.0.0
+
+# Async MongoDB driver
+motor>=3.5.0
+
+# Async Redis client (optional, for caching/rate limiting)
+aioredis>=2.0.0
+
+# Async HTTP client
+aiohttp>=3.9.0
+
+# Structured logging
+structlog>=23.2.0
+
+# Configuration management
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# Utility
+python-dateutil>=2.8.0
