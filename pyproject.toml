@@ -1,25 +1,20 @@
+[project]
+name = "telegram-music-bot"
+version = "1.0.0"
+description = "Telegram group voice-chat music bot built with Pyrogram and PyTgCalls (NTgCalls)."
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B", "ASYNC"]
+
 [tool.mypy]
-python_version = "3.14"
+python_version = "3.12"
 ignore_missing_imports = true
-warn_return_any = true
-warn_unused_ignores = true
-warn_redundant_casts = true
-disallow_untyped_defs = false
-disallow_incomplete_defs = false
-check_untyped_defs = true
+warn_unused_ignores = false
 
-[[tool.mypy.overrides]]
-module = "kurigram.*"
-ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
-module = "motor.*"
-ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
-module = "aiohttp.*"
-ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
-module = "structlog.*"
-ignore_missing_imports = true
+[tool.pyright]
+pythonVersion = "3.12"

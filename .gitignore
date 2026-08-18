@@ -1,40 +1,36 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-*.egg-info/
-dist/
-build/
-
-# Virtual environments
-venv/
-.venv/
-env/
-
-# Environment
+# Environment / secrets
 .env
 
-# Git
-.git/
-.gitignore
+# Pyrogram session files
+*.session
+sessions/
 
-# Logs
+# Downloads and logs
+downloads/
 logs/
-*.log
 
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+.eggs/
+*.egg-info/
+build/
+dist/
 
-# Testing
-.pytest_cache/
-.mypy_cache/
+# Tooling
 .ruff_cache/
+.mypy_cache/
+.pyright/
+.pytest_cache/
+.coverage
+htmlcov/
 
-# OS
+# OS / editor
 .DS_Store
 Thumbs.db
+.idea/
+.vscode/

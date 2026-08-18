@@ -1,36 +1,28 @@
-"""Handlers package - registers all command and callback handlers."""
-
 from __future__ import annotations
 
-from kurigram import AsyncClient
+from pyrogram import Client, filters
+from pyrogram.types import Message
 
-import handlers.admin_commands
-import handlers.admin_panel
-import handlers.credits
-import handlers.force_join
-import handlers.help
-import handlers.history
-import handlers.profile
-import handlers.search
-import handlers.start
-import handlers.updates
-import handlers.welcome
+from config import Settings
+from handlers import admin, callbacks, controls, play, queue, start, voice
+from music.downloader import Downloader
+from music.player import PlayerManager
 
 
-def register_all_handlers(client: AsyncClient) -> None:
-    """Register all handlers with the client.
+def register_all(
+    app: Client,
+    manager: PlayerManager,
+    downloader: Downloader,
+    settings: Settings,
+) -> None:
+    start.register(app, manager, settings)
+    play.register(app, manager, downloader, settings)
+    controls.register(app, manager, settings)
+    queue.register(app, manager, settings)
+    voice.register(app, manager, settings)
+    admin.register(app, manager, settings)
+    callbacks.register(app, manager, settings)
 
-    Args:
-        client: Kurigram client instance.
-    """
-    handlers.start.register_handlers(client)
-    handlers.help.register_handlers(client)
-    handlers.search.register_handlers(client)
-    handlers.history.register_handlers(client)
-    handlers.credits.register_handlers(client)
-    handlers.profile.register_handlers(client)
-    handlers.updates.register_handlers(client)
-    handlers.welcome.register_handlers(client)
-    handlers.force_join.register_handlers(client)
-    handlers.admin_commands.register_handlers(client)
-    handlers.admin_panel.register_handlers(client)
+    @app.on_message(filters.group)
+    async def _record_chat(client: Client, message: Message) -> None:
+        manager.record_chat(message.chat.id)
