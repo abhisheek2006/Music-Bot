@@ -12,6 +12,15 @@ except RuntimeError:
     except RuntimeError:
         asyncio.set_event_loop(asyncio.new_event_loop())
 
+import pyrogram.errors as _pyrogram_errors
+
+if not hasattr(_pyrogram_errors, "GroupcallForbidden"):
+
+    class GroupcallForbidden(_pyrogram_errors.BadRequest):
+        ID = "GROUPCALL_FORBIDDEN"
+
+    _pyrogram_errors.GroupcallForbidden = GroupcallForbidden
+
 from pyrogram import Client, idle
 from pytgcalls import PyTgCalls
 
