@@ -1,4 +1,4 @@
-Pyrogram==2.0.106
+PyroTGFork==2.2.24
 py-tgcalls==2.3.3
 ntgcalls==2.2.5
 TgCrypto==1.2.5
